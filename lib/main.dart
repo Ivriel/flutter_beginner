@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 import 'httprequest/get.dart';
-import 'statelessvsstatefull/slicinginstagram/navbar.dart';
-import 'statelessvsstatefull/slicinginstagram/splashscreen.dart';
+import 'httprequest/post.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -20,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:GetPage(),
+      home:Postpage(),
     );
   }
 }
