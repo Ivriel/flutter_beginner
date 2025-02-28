@@ -9,11 +9,15 @@ class GetPage extends StatefulWidget {
 }
 
 class _GetPageState extends State<GetPage> {
-  late String body;
+  late String id;
+  late String email;
+  late String name;
 
   @override
   void initState(){
-    body="belum ada data";
+    id="";
+    email="";
+    name="";
     super.initState();
   }
   @override
@@ -34,21 +38,23 @@ class _GetPageState extends State<GetPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(body,style: TextStyle(fontSize: 20),),
+            Text("ID:$id",style: TextStyle(fontSize: 20),),
+             Text("Email: $email",style: TextStyle(fontSize: 20),),
+              Text("Name: $name",style: TextStyle(fontSize: 20),),
             SizedBox(height: 15),
             ElevatedButton(
             onPressed: () async{
-              var myresponse = await http.get(Uri.parse("https://reqres.in/api/users/2"));
+              var myresponse = await http.get(Uri.parse("https://reqres.in/api/users/5"));
               if(myresponse.statusCode == 200){
                 print("Berhasil Get Data");
                 Map<String,dynamic> data = json.decode(myresponse.body) as Map<String, dynamic>;
                 setState(() {
-                  body = data["data"].toString();
+                  id= data["data"]["id"].toString();
+                  email= data["data"]["email"].toString();
+                  name= "${data["data"]["first_name"]} ${data["data"]["last_name"]}";
                 });
               } else {
-                setState(() {
-                  body = "Gagal Get Data ${myresponse.statusCode}";
-                });
+                print("Gagal Get Data");
               }
             }, 
             child: Text("get data")
