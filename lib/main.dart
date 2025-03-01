@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'httprequest/futurebuilder.dart';
+import 'httprequest/model.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:Futurebuilder(),
+      home:Modelpage(),
     );
   }
 }
