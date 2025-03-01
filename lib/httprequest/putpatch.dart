@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-class Postpage extends StatefulWidget {
-  const Postpage({super.key});
+
+// Put itu mereplace
+// Patch itu mengupdate
+
+class Putpatch extends StatefulWidget {
+  const Putpatch({super.key});
 
   @override
-  State<Postpage> createState() => _PostpageState();
+  State<Putpatch> createState() => _PutpatchState();
 }
 
-class _PostpageState extends State<Postpage> {
-
+class _PutpatchState extends State<Putpatch> {
   TextEditingController name=TextEditingController();
   TextEditingController job=TextEditingController();
 
   String hasilResponse="Belum ada data";
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Post Data HTTP Request",
+          "Put/Patch HTTP Request",
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold
@@ -56,8 +58,8 @@ class _PostpageState extends State<Postpage> {
           SizedBox(height: 15),
           ElevatedButton(
             onPressed: ()async {
-              var response = await http.post (
-                Uri.parse('https://reqres.in/api/users'),
+              var response = await http.patch(
+                Uri.parse('https://reqres.in/api/users/3'),
                 body: {
                   "name": name.text,
                   "job": job.text
@@ -66,10 +68,8 @@ class _PostpageState extends State<Postpage> {
                 var responseData = json.decode(response.body);
                 setState(() {
                    hasilResponse = "Response dari Server:\n"
-        "ID: ${responseData['id']}\n"
-        "Name: ${responseData['name']}\n"
-        "Job: ${responseData['job']}\n"
-        "Created at: ${responseData['createdAt']}";
+                    "Name: ${responseData["name"]}\n"
+                    "Job: ${responseData["job"]}\n";
                 });
             },
             child: Text("Submit"),

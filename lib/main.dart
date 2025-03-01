@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'httprequest/get.dart';
-import 'httprequest/post.dart';
+import 'httprequest/putpatch.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -18,7 +17,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:Postpage(),
+      home:Putpatch(),
     );
   }
 }
