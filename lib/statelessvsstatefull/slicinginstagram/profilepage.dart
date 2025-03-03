@@ -35,7 +35,18 @@ class ProfileInstagramPage extends StatelessWidget {
                   ),
                   context: context, 
                   builder: (context) => Container(
+                    child: Center(
+                      child: Column(
+                        children: [
+                          ListTile(
+                            leading: Icon(Icons.home),
+                            title: Text('Home'),
+                          )
+                        ],
+                      ),
+                    ),
                     height: 480,
+                    width: double.infinity,
                   )
                 );
               },
