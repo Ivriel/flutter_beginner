@@ -10,7 +10,7 @@ class Futurebuilder extends StatelessWidget {
 
   Future getAllUser() async {
    try{
-      var response = await http.get(Uri.parse('https://reqres.in/api/users'));
+      var response = await http.get(Uri.parse('https://reqres.in/api/users?page=2'));
       List data = (json.decode(response.body) as Map<String, dynamic>)["data"];
       data.forEach((element){
         allUser.add(UserModel.fromJson(element));
