@@ -1,22 +1,41 @@
-import 'package:flutter/material.dart';
+// To parse this JSON data, do
+//
+//     final welcome = welcomeFromJson(jsonString);
 
-class Modelpage extends StatelessWidget {
-  const Modelpage({super.key});
+import 'dart:convert';
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Model HTTP Request",
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold
-          ),
-          ),
-        centerTitle: true,
-        backgroundColor: Colors.blue,
-      ),
+UserModel UserModelFromJson(String str) => UserModel.fromJson(json.decode(str));
+
+String UserModelToJson(UserModel data) => json.encode(data.toJson());
+
+class UserModel {
+    int id;
+    String email;
+    String firstName;
+    String lastName;  
+    String avatar;
+
+    UserModel({
+        required this.id,
+        required this.email,
+        required this.firstName,
+        required this.lastName,
+        required this.avatar,
+    });
+
+    factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
+        id: json["id"],
+        email: json["email"],
+        firstName: json["first_name"],
+        lastName: json["last_name"],
+        avatar: json["avatar"],
     );
-  }
+
+    Map<String, dynamic> toJson() => {
+        "id": id,
+        "email": email,
+        "first_name": firstName,
+        "last_name": lastName,
+        "avatar": avatar,
+    };
 }

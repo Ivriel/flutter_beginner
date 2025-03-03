@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_beginner/httprequest/model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 // digunakan ketika ingin mendapatkan data dari api tanpa harus klik functionnya alias otomatis.
-class Futurebuilder extends StatelessWidget {
+class Futurebuilder2 extends StatelessWidget {
  
-  List<UserModel> allUser=[];
+  List<Map<String,dynamic>> allUser=[];
 
   Future getAllUser() async {
    try{
       var response = await http.get(Uri.parse('https://reqres.in/api/users'));
       List data = (json.decode(response.body) as Map<String, dynamic>)["data"];
       data.forEach((element){
-        allUser.add(UserModel.fromJson(element));
+        allUser.add(element);
       });
       print(allUser);
    } catch (e){
@@ -43,20 +42,15 @@ class Futurebuilder extends StatelessWidget {
               child: Text("Loading..."),
               );
           } else {
-            if(allUser.length==0) {
-              return Center(
-                child: Text("Data tidak ditemukan"),
-                );
-            }
           return ListView.builder(
             itemCount: allUser.length,
             itemBuilder: (context,index) => ListTile(
               leading: CircleAvatar(
                 backgroundColor: Colors.grey[300],
-                backgroundImage: NetworkImage(allUser[index].avatar),
+                backgroundImage: NetworkImage("${allUser[index]["avatar"]}"),
               ),
-              title: Text("${allUser[index].firstName} ${allUser[index].lastName}"),
-              subtitle: Text("${allUser[index].email}"),
+              title: Text("${allUser[index]["first_name"]} ${allUser[index]["last_name"]}"),
+              subtitle: Text("${allUser[index]["email"]}"),
             ),
             );
           }
